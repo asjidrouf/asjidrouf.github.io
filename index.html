@@ -423,25 +423,87 @@ section{padding:88px 72px;}
 .video-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;color:var(--white);letter-spacing:-0.2px;}
 
 /* ─── CLIENTS ─── */
-#clients{background:var(--black);border-top:1px solid var(--border);padding:80px 72px;}
-.clients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-soft);}
-.client-card{
-  padding:26px 20px;
-  background:var(--card);
-  border:none;
-  transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+#clients{background:var(--black);border-top:1px solid var(--border);padding:80px 0;}
+.clients-header{padding:0 72px 48px;}
+
+/* Marquee strip */
+.clients-marquee-wrap{
   position:relative;overflow:hidden;
+  padding:12px 0;
 }
-.client-card::after{
+.clients-marquee-wrap::before,
+.clients-marquee-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:180px;z-index:2;pointer-events:none;
+}
+.clients-marquee-wrap::before{left:0;background:linear-gradient(90deg,var(--black) 0%,transparent 100%);}
+.clients-marquee-wrap::after{right:0;background:linear-gradient(270deg,var(--black) 0%,transparent 100%);}
+
+.clients-marquee-track{
+  display:flex;gap:20px;
+  width:max-content;
+  animation:marqueeScroll 32s linear infinite;
+}
+.clients-marquee-track:hover{animation-play-state:paused;}
+
+@keyframes marqueeScroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+.logo-card{
+  flex-shrink:0;
+  width:180px;height:90px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.055);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:2px;
+  padding:18px 22px;
+  position:relative;overflow:hidden;
+  transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+  cursor:default;
+}
+.logo-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 70%);
+  opacity:0;transition:opacity 0.4s;
+}
+.logo-card::after{
   content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
   transform:scaleX(0);transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
 }
-.client-card:hover{background:#0e0e0e;transform:translateY(-3px);}
-.client-card:hover::after{transform:scaleX(1);}
-.client-emoji{font-size:22px;margin-bottom:12px;filter:grayscale(40%);}
-.client-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;margin-bottom:4px;letter-spacing:-0.2px;}
-.client-type{font-size:9px;letter-spacing:1.5px;color:var(--grey);text-transform:uppercase;}
+.logo-card:hover{
+  background:rgba(255,255,255,0.09);
+  border-color:rgba(201,168,76,0.25);
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.5);
+}
+.logo-card:hover::before{opacity:1;}
+.logo-card:hover::after{transform:scaleX(1);}
+
+.logo-card img{
+  width:100%;height:100%;object-fit:contain;
+  /* Make all logos visible on dark bg: invert black logos to white, keep coloured ones */
+  filter:brightness(0) invert(1) opacity(0.75);
+  transition:filter 0.4s,opacity 0.4s;
+}
+.logo-card:hover img{
+  filter:brightness(0) invert(1) opacity(1);
+}
+
+/* Second row marquee — opposite direction */
+.clients-marquee-track.reverse{
+  animation-name:marqueeScrollReverse;
+  animation-duration:38s;
+}
+@keyframes marqueeScrollReverse{
+  0%{transform:translateX(-50%);}
+  100%{transform:translateX(0);}
+}
+
+/* Old grid (now hidden — replaced by marquee) */
+.clients-grid{display:none;}
+.client-card,.client-emoji,.client-name,.client-type{display:none;}
 
 /* ─── TESTIMONIALS ─── */
 .testimonials{padding:80px 72px;background:rgba(8,8,8,0.98);border-top:1px solid var(--border);}
@@ -598,6 +660,49 @@ footer{
 ::-webkit-scrollbar-track{background:var(--black);}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),transparent);}
 
+/* ─── TRUSTED BY STRIP ─── */
+.trusted-strip{
+  padding:28px 0;
+  background:rgba(8,8,8,0.98);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+  display:flex;align-items:center;gap:0;
+}
+.trusted-label{
+  flex-shrink:0;
+  padding:0 32px 0 72px;
+  font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--grey);white-space:nowrap;
+  position:relative;z-index:3;
+}
+.trusted-marquee-wrap{
+  flex:1;position:relative;overflow:hidden;
+}
+.trusted-marquee-wrap::before,
+.trusted-marquee-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
+}
+.trusted-marquee-wrap::before{left:0;background:linear-gradient(90deg,rgba(8,8,8,1) 0%,transparent 100%);}
+.trusted-marquee-wrap::after{right:0;background:linear-gradient(270deg,rgba(8,8,8,1) 0%,transparent 100%);}
+
+.trusted-marquee-track{
+  display:flex;gap:12px;width:max-content;
+  animation:marqueeScroll 28s linear infinite;
+}
+.trusted-marquee-track:hover{animation-play-state:paused;}
+
+/* Small logo card variant */
+.logo-card.sm{
+  width:130px;height:60px;
+  padding:10px 16px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.logo-card.sm:hover{
+  background:rgba(255,255,255,0.08);
+  transform:translateY(-3px);
+}
+
 /* ─── ANIMATIONS ─── */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
@@ -611,7 +716,8 @@ footer{
   .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
   .portfolio-grid,.video-grid{grid-template-columns:1fr;}
   .project-card.featured{grid-column:span 1;}
-  .clients-grid{grid-template-columns:repeat(2,1fr);}
+  .clients-grid{display:none;}
+  .clients-header{padding:0 24px 36px;}
   .testi-grid{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:12px;text-align:center;}
   .modal-body{padding:24px;}.modal-header{padding:16px 24px;}
@@ -675,6 +781,46 @@ footer{
     </div>
   </div>
 </section>
+
+<div class="gold-line"></div>
+
+<!-- ═══ TRUSTED BY STRIP ═══ -->
+<div class="trusted-strip">
+  <div class="trusted-label">Trusted By</div>
+  <div class="trusted-marquee-wrap">
+    <div class="trusted-marquee-track">
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014886/1-01_ugoges.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014890/1-02_vsvb1f.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014893/1-03_apvruw.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014894/1-04_nxfjuf.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014895/1-05_tyl2mp.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014896/1-06_zc0ycx.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014897/1-07_ydbn6q.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-08_cywyhl.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-09_qzcgwh.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-10_uvc1ia.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014887/1-11_fcvkwc.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014888/1-12_iqvb43.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014891/1-13_wdffaz.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014892/1-14_lkqkkj.png" alt="" loading="lazy"></div>
+      <!-- duplicate for seamless loop -->
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014886/1-01_ugoges.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014890/1-02_vsvb1f.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014893/1-03_apvruw.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014894/1-04_nxfjuf.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014895/1-05_tyl2mp.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014896/1-06_zc0ycx.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014897/1-07_ydbn6q.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-08_cywyhl.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-09_qzcgwh.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-10_uvc1ia.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014887/1-11_fcvkwc.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014888/1-12_iqvb43.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014891/1-13_wdffaz.png" alt="" loading="lazy"></div>
+      <div class="logo-card sm"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014892/1-14_lkqkkj.png" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</div>
 
 <div class="gold-line"></div>
 
@@ -795,21 +941,80 @@ footer{
 <div class="gold-line"></div>
 
 <section id="clients">
-  <div class="section-eyebrow">Who I've Worked With</div>
-  <h2 class="section-title">My <em>Clients</em></h2>
-  <div class="clients-grid">
-    <div class="client-card"><div class="client-emoji">🏢</div><div class="client-name">Vowlyn</div><div class="client-type">Digital Agency · Canada</div></div>
-    <div class="client-card"><div class="client-emoji">🎨</div><div class="client-name">Burloak Painting</div><div class="client-type">Renovations · Canada</div></div>
-    <div class="client-card"><div class="client-emoji">👗</div><div class="client-name">Sitala</div><div class="client-type">Fashion · Pakistan</div></div>
-    <div class="client-card"><div class="client-emoji">🚗</div><div class="client-name">King Driving School</div><div class="client-type">Education · Pakistan</div></div>
-    <div class="client-card"><div class="client-emoji">🦷</div><div class="client-name">Dr. Munaaf's Dental</div><div class="client-type">Healthcare · Pakistan</div></div>
-    <div class="client-card"><div class="client-emoji">🏃</div><div class="client-name">PhysioGuild</div><div class="client-type">Physiotherapy · Pakistan</div></div>
-    <div class="client-card"><div class="client-emoji">🏙️</div><div class="client-name">Hira Holdings</div><div class="client-type">Real Estate · Dubai</div></div>
-    <div class="client-card"><div class="client-emoji">☕</div><div class="client-name">Café Vero</div><div class="client-type">F&B Branding · Pakistan</div></div>
-    <div class="client-card"><div class="client-emoji">🥐</div><div class="client-name">Golden Crust Bakery</div><div class="client-type">Cafe & Bakery · Pakistan</div></div>
-    <div class="client-card"><div class="client-emoji">🏡</div><div class="client-name">Arian Rugs</div><div class="client-type">Persian Rugs · Canada</div></div>
-    <div class="client-card"><div class="client-emoji">🏗️</div><div class="client-name">Zarrar & Co</div><div class="client-type">Real Estate Dev · Pakistan</div></div>
-    <div class="client-card"><div class="client-emoji">👑</div><div class="client-name">2nd Wife</div><div class="client-type">Fashion Brand</div></div>
+  <div class="clients-header">
+    <div class="section-eyebrow">Who I've Worked With</div>
+    <h2 class="section-title">My <em>Clients</em></h2>
+  </div>
+
+  <!-- ROW 1 — scrolls left -->
+  <div class="clients-marquee-wrap" style="margin-bottom:20px;">
+    <div class="clients-marquee-track" id="marquee1">
+      <!-- 14 logos × 2 for seamless loop -->
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014886/1-01_ugoges.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014890/1-02_vsvb1f.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014893/1-03_apvruw.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014894/1-04_nxfjuf.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014895/1-05_tyl2mp.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014896/1-06_zc0ycx.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014897/1-07_ydbn6q.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-08_cywyhl.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-09_qzcgwh.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-10_uvc1ia.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014887/1-11_fcvkwc.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014888/1-12_iqvb43.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014891/1-13_wdffaz.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014892/1-14_lkqkkj.png" alt="Client Logo" loading="lazy"></div>
+      <!-- Duplicate set for seamless loop -->
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014886/1-01_ugoges.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014890/1-02_vsvb1f.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014893/1-03_apvruw.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014894/1-04_nxfjuf.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014895/1-05_tyl2mp.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014896/1-06_zc0ycx.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014897/1-07_ydbn6q.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-08_cywyhl.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-09_qzcgwh.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-10_uvc1ia.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014887/1-11_fcvkwc.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014888/1-12_iqvb43.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014891/1-13_wdffaz.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014892/1-14_lkqkkj.png" alt="Client Logo" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- ROW 2 — scrolls right (reverse), offset start -->
+  <div class="clients-marquee-wrap">
+    <div class="clients-marquee-track reverse">
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014892/1-14_lkqkkj.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014891/1-13_wdffaz.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014888/1-12_iqvb43.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014887/1-11_fcvkwc.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-10_uvc1ia.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-09_qzcgwh.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-08_cywyhl.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014897/1-07_ydbn6q.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014896/1-06_zc0ycx.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014895/1-05_tyl2mp.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014894/1-04_nxfjuf.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014893/1-03_apvruw.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014890/1-02_vsvb1f.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014886/1-01_ugoges.png" alt="Client Logo" loading="lazy"></div>
+      <!-- Duplicate -->
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014892/1-14_lkqkkj.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014891/1-13_wdffaz.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014888/1-12_iqvb43.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014887/1-11_fcvkwc.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-10_uvc1ia.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-09_qzcgwh.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014899/1-08_cywyhl.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014897/1-07_ydbn6q.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014896/1-06_zc0ycx.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014895/1-05_tyl2mp.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014894/1-04_nxfjuf.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014893/1-03_apvruw.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014890/1-02_vsvb1f.png" alt="Client Logo" loading="lazy"></div>
+      <div class="logo-card"><img src="https://res.cloudinary.com/djstonvyb/image/upload/v1777014886/1-01_ugoges.png" alt="Client Logo" loading="lazy"></div>
+    </div>
   </div>
 </section>
 
