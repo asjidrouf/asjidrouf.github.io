@@ -454,18 +454,13 @@ section{padding:88px 72px;}
   flex-shrink:0;
   width:180px;height:90px;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,0.055);
-  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
   border-radius:2px;
   padding:18px 22px;
   position:relative;overflow:hidden;
   transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
   cursor:default;
-}
-.logo-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 80% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 70%);
-  opacity:0;transition:opacity 0.4s;
 }
 .logo-card::after{
   content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
@@ -473,22 +468,32 @@ section{padding:88px 72px;}
   transform:scaleX(0);transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
 }
 .logo-card:hover{
-  background:rgba(255,255,255,0.09);
+  background:rgba(255,255,255,0.13);
   border-color:rgba(201,168,76,0.25);
   transform:translateY(-4px);
   box-shadow:0 16px 40px rgba(0,0,0,0.5);
 }
-.logo-card:hover::before{opacity:1;}
 .logo-card:hover::after{transform:scaleX(1);}
+
+/* Small logo card variant */
+.logo-card.sm{
+  width:130px;height:60px;
+  padding:10px 16px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+}
+.logo-card.sm:hover{
+  background:rgba(255,255,255,0.13);
+  transform:translateY(-3px);
+}
 
 .logo-card img{
   width:100%;height:100%;object-fit:contain;
-  /* Make all logos visible on dark bg: invert black logos to white, keep coloured ones */
-  filter:brightness(0) invert(1) opacity(0.75);
-  transition:filter 0.4s,opacity 0.4s;
+  opacity:0.85;
+  transition:opacity 0.4s,transform 0.4s;
 }
 .logo-card:hover img{
-  filter:brightness(0) invert(1) opacity(1);
+  opacity:1;
 }
 
 /* Second row marquee — opposite direction */
@@ -690,18 +695,6 @@ footer{
   animation:marqueeScroll 28s linear infinite;
 }
 .trusted-marquee-track:hover{animation-play-state:paused;}
-
-/* Small logo card variant */
-.logo-card.sm{
-  width:130px;height:60px;
-  padding:10px 16px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.06);
-}
-.logo-card.sm:hover{
-  background:rgba(255,255,255,0.08);
-  transform:translateY(-3px);
-}
 
 /* ─── ANIMATIONS ─── */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
