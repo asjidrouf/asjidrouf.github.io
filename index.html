@@ -188,7 +188,14 @@ nav.scrolled{padding:12px 72px;}
   letter-spacing:-2px;
   opacity:0;transform:translateY(40px);
 }
-.hero h1 em{font-style:italic;color:var(--gold);}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(100deg, var(--gold) 20%, var(--gold-pale) 40%, var(--gold) 60%, var(--gold-light) 80%);
+  background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:goldShimmer 6s ease-in-out infinite;
+}
+@keyframes goldShimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .hero h1 span{display:block;}
 .hero-desc{
   font-size:14px;line-height:1.85;
@@ -377,7 +384,13 @@ section{padding:88px 72px;}
   margin-bottom:48px;
   letter-spacing:-1px;
 }
-.section-title em{font-style:italic;color:var(--gold);}
+.section-title em{
+  font-style:italic;
+  background:linear-gradient(100deg, var(--gold) 20%, var(--gold-pale) 45%, var(--gold) 70%);
+  background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:goldShimmer 7s ease-in-out infinite;
+}
 
 /* ─── ABOUT ─── */
 .trusted-strip{background:rgba(10,8,18,0.88);}
@@ -951,7 +964,7 @@ footer{
       <img class="pfp-img" src="https://res.cloudinary.com/djstonvyb/image/upload/v1776856459/asjid_pfp-01_opcx8l.jpg" alt="Asjid Rouf">
     </div>
     <div class="hero-stats-row">
-      <div class="stat-box"><div class="stat-num">3+</div><div class="stat-label">Years Exp</div></div>
+      <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">Years Exp</div></div>
       <div class="stat-box"><div class="stat-num">50+</div><div class="stat-label">Projects</div></div>
       <div class="stat-box"><div class="stat-num">15+</div><div class="stat-label">Clients</div></div>
     </div>
@@ -964,55 +977,6 @@ footer{
 </section>
 
 <div class="gold-line"></div>
-
-<section id="services">
-  <div class="section-eyebrow">What I Do</div>
-  <h2 class="section-title">Luxury <em>Creative</em> Services</h2>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-top">
-        <div class="service-tag">Design</div>
-        <div class="service-icon">✦</div>
-      </div>
-      <div class="service-title">Brand Identity & Visual Systems</div>
-      <div class="service-desc">Premium logos, brand rules, and visual direction that look expensive and stay consistent everywhere.</div>
-      <div class="service-list">
-        <span class="service-pill">Logo Suite</span>
-        <span class="service-pill">Brand Guide</span>
-        <span class="service-pill">Packaging</span>
-        <span class="service-pill">Social Templates</span>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-top">
-        <div class="service-tag">Video</div>
-        <div class="service-icon">▶</div>
-      </div>
-      <div class="service-title">Reels, Ads & Cinematic Edits</div>
-      <div class="service-desc">Fast-paced, scroll-stopping edits with premium pacing, music, captions, and clean transitions.</div>
-      <div class="service-list">
-        <span class="service-pill">Shorts / Reels</span>
-        <span class="service-pill">Event Highlights</span>
-        <span class="service-pill">Ad Cuts</span>
-        <span class="service-pill">Captions</span>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-top">
-        <div class="service-tag">Web</div>
-        <div class="service-icon">⌁</div>
-      </div>
-      <div class="service-title">Web Design That Feels High-End</div>
-      <div class="service-desc">Clean, modern, luxury layouts with strong typography and motion—built to convert visitors into clients.</div>
-      <div class="service-list">
-        <span class="service-pill">Landing Pages</span>
-        <span class="service-pill">Portfolio Sites</span>
-        <span class="service-pill">WordPress</span>
-        <span class="service-pill">Shopify</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ TRUSTED BY STRIP ═══ -->
 <div class="trusted-strip">
@@ -1251,8 +1215,8 @@ footer{
     </div>
 
     <div>
-      <div class="exp-item"><div class="exp-year">2022 — Present</div><div class="exp-title">Freelance Designer & Video Editor</div><div class="exp-company">Branding · Reels · Web</div></div>
-      <div class="exp-item"><div class="exp-year">2021 — 2022</div><div class="exp-title">Creative Assistant — Internship</div><div class="exp-company">Agency Experience</div></div>
+      <div class="exp-item"><div class="exp-year">2021 — Present</div><div class="exp-title">Freelance Designer & Video Editor</div><div class="exp-company">Branding · Reels · Web</div></div>
+      <div class="exp-item"><div class="exp-year">2020 — 2021</div><div class="exp-title">Creative Assistant — Internship</div><div class="exp-company">Agency Experience</div></div>
       <div class="tools-box">
         <div class="section-eyebrow" style="margin-bottom:12px;">Signature Style</div>
         <p>Luxury typography · Clean grids · Bold contrast · Smooth motion · Premium color accents · Consistent brand systems</p>
@@ -1270,6 +1234,57 @@ footer{
     <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Our Meta ad campaigns under Asjid's management generated real leads at a fraction of previous cost. He understands both design and data — a rare combination."</div><div class="testi-author">Dr. Rehan</div><div class="testi-company">Dental Practice · Pakistan</div></div>
   </div>
 </div>
+
+<div class="gold-line"></div>
+
+<section id="services">
+  <div class="section-eyebrow">What I Do</div>
+  <h2 class="section-title">Luxury <em>Creative</em> Services</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-top">
+        <div class="service-tag">Design</div>
+        <div class="service-icon">✦</div>
+      </div>
+      <div class="service-title">Brand Identity & Visual Systems</div>
+      <div class="service-desc">Premium logos, brand rules, and visual direction that look expensive and stay consistent everywhere.</div>
+      <div class="service-list">
+        <span class="service-pill">Logo Suite</span>
+        <span class="service-pill">Brand Guide</span>
+        <span class="service-pill">Packaging</span>
+        <span class="service-pill">Social Templates</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-top">
+        <div class="service-tag">Video</div>
+        <div class="service-icon">▶</div>
+      </div>
+      <div class="service-title">Reels, Ads & Cinematic Edits</div>
+      <div class="service-desc">Fast-paced, scroll-stopping edits with premium pacing, music, captions, and clean transitions.</div>
+      <div class="service-list">
+        <span class="service-pill">Shorts / Reels</span>
+        <span class="service-pill">Event Highlights</span>
+        <span class="service-pill">Ad Cuts</span>
+        <span class="service-pill">Captions</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-top">
+        <div class="service-tag">Web</div>
+        <div class="service-icon">⌁</div>
+      </div>
+      <div class="service-title">Web Design That Feels High-End</div>
+      <div class="service-desc">Clean, modern, luxury layouts with strong typography and motion—built to convert visitors into clients.</div>
+      <div class="service-list">
+        <span class="service-pill">Landing Pages</span>
+        <span class="service-pill">Portfolio Sites</span>
+        <span class="service-pill">WordPress</span>
+        <span class="service-pill">Shopify</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="gold-line"></div>
 
