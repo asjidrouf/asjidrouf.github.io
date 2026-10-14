@@ -2614,6 +2614,120 @@ section {
   }
 }
 
+
+/* Mobile sizing: desktop rules above remain the source for larger screens. */
+@media (max-width: 900px) {
+  .hero-layout > *, .about-grid-editorial > *, .contact-grid > *, .video-grid > *, .editorial-works-grid > * {min-width:0;}
+  .mobile-menu {overflow-y:auto;align-items:flex-start;padding:90px 0 28px;height:100dvh;}
+  .m-menu-bg {position:fixed;}
+  .m-menu-inner {gap:20px;}
+  .m-nav-links {gap:8px;}
+  .m-link {min-height:44px;}
+  .m-contact-direct a {margin-bottom:0;}
+  .hero-portrait-stage {max-width:500px;margin:auto;}
+  .f-top-left {left:0;}
+  .f-bottom-right {right:0;}
+  .orbit-3d-ring.r1 {width:90%;height:auto;aspect-ratio:1;}
+  .orbit-3d-ring.r2 {width:100%;height:auto;aspect-ratio:1;}
+  .orbital-system {width:min(420px,100%);flex-shrink:0;}
+  .track-outer {width:100%;}
+  .track-inner {width:66%;}
+  .disc-name,.disc-cat {white-space:normal;line-height:1.25;}
+  .disc-plate {padding:6px;}
+  .modal-top-bar,.v-modal-top {padding:16px;gap:14px;}
+  .m-modal-title,.v-modal-title {font-size:18px;overflow-wrap:anywhere;}
+  .modal-close-btn,.v-modal-close {flex-shrink:0;min-width:44px;min-height:44px;}
+  .video-modal-container {width:calc(100% - 24px);max-height:90dvh;overflow:auto;}
+  .project-modal {height:100dvh;}
+  .modal-scroll-area {min-height:0;overscroll-behavior:contain;}
+  .cursor-dot,.cursor-ring {display:none;}
+}
+@media (max-width: 600px) {
+  .container {width:100%;padding-left:18px;padding-right:18px;}
+  section {padding:64px 0;scroll-margin-top:76px;}
+  .site-header,.site-header.scrolled {padding:8px 0;z-index:9600;}
+  .nav-inner {padding:4px 18px;gap:12px;}
+  .brand-logo {gap:9px;min-width:0;}
+  .logo-title {font-size:13px;letter-spacing:.12em;}
+  .logo-img-wrap {width:36px;height:36px;flex-shrink:0;}
+  .nav-actions {gap:0;flex-shrink:0;}
+  .hero-sec {padding:110px 0 80px;min-height:auto;}
+  .hero-layout {grid-template-columns:minmax(0,1fr);gap:38px;}
+  .hero-right {margin-top:0;}
+  .hero-portrait-stage {width:100%;padding:12px 0;}
+  .portrait-arch {width:min(300px,84%);}
+  .stage-glow {width:90%;height:auto;aspect-ratio:1;}
+  .floating-glass-plate {padding:9px 11px;gap:7px;max-width:60%;}
+  .fg-text strong {font-size:8px;letter-spacing:.12em;}
+  .fg-text span {font-size:8px;}
+  .fg-icon {font-size:12px;}
+  .f-top-left {top:16%;left:0;}
+  .f-bottom-right {right:0;bottom:14%;}
+  .portrait-label-chip {font-size:7px;letter-spacing:.12em;padding:6px 9px;max-width:94%;gap:5px;}
+  .hero-headline {font-size:clamp(28px,8vw,46px);line-height:1.08;letter-spacing:-.025em;}
+  .hero-tagline {font-size:9px;letter-spacing:.18em;line-height:1.7;}
+  .hero-pill-badge {font-size:8px;letter-spacing:.13em;line-height:1.6;padding:8px 12px;}
+  .pulse-dot {flex-shrink:0;}
+  .hero-lead-text {font-size:14px;margin-bottom:24px;}
+  .hero-cta-group {gap:10px;margin-bottom:28px;}
+  .hero-cta-group .btn {width:100%;min-height:48px;font-size:10px;}
+  .hero-metrics-bar {gap:10px;justify-content:space-between;}
+  .metric-block {flex:1;min-width:0;}
+  .metric-val {font-size:25px;}
+  .metric-lbl {font-size:8px;letter-spacing:.1em;line-height:1.6;}
+  .metric-div {flex-shrink:0;}
+  .sec-title-editorial {font-size:clamp(28px,8.5vw,42px);line-height:1.15;overflow-wrap:break-word;}
+  .sec-subtitle {font-size:14px;}
+  .eyebrow-luxury {gap:8px;font-size:9px;letter-spacing:.16em;}
+  .sec-header {margin-bottom:30px;}
+  .about-grid-editorial,.contact-grid {gap:30px;}
+  .about-lead-para {font-size:21px;}
+  .arsenal-card {padding:18px;}
+  .ac-title {font-size:11px;letter-spacing:.12em;}
+  .tool-info {min-width:0;}
+  .chip {font-size:9px;padding:7px 12px;letter-spacing:.1em;}
+  .work-top-bar {flex-direction:column;align-items:flex-start;gap:20px;}
+  .portfolio-filter-tabs {gap:8px;max-width:100%;}
+  .f-tab {min-height:44px;font-size:9px;padding:8px 12px;letter-spacing:.1em;}
+  .editorial-works-grid,.video-grid {grid-template-columns:minmax(0,1fr);gap:28px;}
+  .card-footer-info {flex-wrap:wrap;gap:10px;padding-top:14px;}
+  .cf-left {gap:10px;min-width:0;}
+  .cf-title {font-size:15px;}
+  .cf-num {flex-shrink:0;}
+  .cf-tag {font-size:8px;letter-spacing:.12em;}
+  .video-media-box,.video-card.v-featured .video-media-box {height:auto;aspect-ratio:16/9;}
+  .video-meta-bar {flex-wrap:wrap;gap:12px;}
+  .v-title {font-size:16px;}
+  .v-pill {font-size:9px;letter-spacing:.1em;}
+  .acc-head {padding:20px 0;grid-template-columns:24px minmax(0,1fr) 32px;gap:8px;}
+  .acc-title {font-size:16px;line-height:1.4;}
+  .acc-content-inner {padding:0 0 24px 32px;}
+  .acc-item.active .acc-body {max-height:700px;}
+  .orbital-stage-wrapper {height:440px;max-width:400px;}
+  .orbital-system {height:420px;}
+  .track-outer {height:390px;width:90%;}
+  .track-inner {height:290px;width:60%;}
+  .orbit-disc {width:96px;height:56px;margin-left:-48px;margin-top:-28px;}
+  .disc-name {font-size:8px;letter-spacing:.06em;}
+  .disc-cat {font-size:7px;letter-spacing:.03em;}
+  .orbit-center-core {width:90px;height:90px;}
+  .core-ar-img {width:68px;height:68px;padding:10px;}
+  .testimonial-showcase {padding:28px 16px;}
+  .t-quote {font-size:22px;line-height:1.5;}
+  .contact-card-frame {padding:24px 16px;}
+  .cq-item {gap:12px;}
+  .cq-item strong {font-size:13px;overflow-wrap:anywhere;}
+  .full-btn {font-size:9px;letter-spacing:.08em;padding:14px 10px;min-height:48px;}
+  input,select,textarea {min-width:0;max-width:100%;font-size:16px!important;}
+  .footer-giant-brand {font-size:clamp(28px,9vw,52px);letter-spacing:0;}
+  .footer-bottom-bar {gap:20px;}
+  .f-copyright {font-size:9px;overflow-wrap:anywhere;}
+  .pre-name {font-size:30px;}
+  .pre-sub {font-size:8px;letter-spacing:.14em;}
+  .modal-content-wrap {padding:20px 12px;}
+  .modal-footer-cta .btn {max-width:100%;font-size:10px;}
+}
+
 </style>
 
 <!-- Three.js + GSAP CDN -->
@@ -3973,7 +4087,7 @@ const orbitSpeed = 0.004;
 
 function setupOrbitDiscs() {
   const isMobile = window.innerWidth <= 900;
-  const radiusX = isMobile ? 170 : 250;
+  const radiusX = isMobile ? Math.min(170, Math.max(70, (document.getElementById('orbitalSystem').clientWidth - 116) / 2)) : 250;
   const radiusY = isMobile ? 170 : 250;
 
   orbitDiscs.forEach((disc, i) => {
@@ -3997,7 +4111,7 @@ function updateOrbitSystem() {
   }
 
   const isMobile = window.innerWidth <= 900;
-  const radiusX = isMobile ? 170 : 250;
+  const radiusX = isMobile ? Math.min(170, Math.max(70, (document.getElementById('orbitalSystem').clientWidth - 116) / 2)) : 250;
   const radiusY = isMobile ? 170 : 250;
 
   orbitDiscs.forEach((disc) => {
@@ -4286,12 +4400,19 @@ if (burger && mMenu) {
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
     mMenu.classList.toggle('open');
+    const open = mMenu.classList.contains('open');
+    mMenu.setAttribute('aria-hidden', String(!open));
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
   });
 
   mMenu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       burger.classList.remove('open');
       mMenu.classList.remove('open');
+      mMenu.setAttribute('aria-hidden', 'true');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     });
   });
 }
